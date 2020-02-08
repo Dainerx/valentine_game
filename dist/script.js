@@ -144,22 +144,6 @@ var init = function () {
         window.requestAnimationFrame(loop, canvas);
     };
 
-    setInterval(() => {
-        console.log(cycle);
-        if (cycle == fadeOutCycle) {
-            ctx.font = "30px computerFont";
-            ctx.fillStyle = "white";
-            ctx.fillText("", width / 3, height / 6);
-        } else {
-            ctx.font = "30px computerFont";
-            ctx.fillStyle = "white";
-            ctx.fillText("← Press any key to play →", width / 3, height / 6);
-        }
-
-        cycle += cycleStep;
-        fadeOutCycle += cycleStep / 2;
-        displayCycle += cycleStep;
-    }, 2000);
     loop();
 };
 
