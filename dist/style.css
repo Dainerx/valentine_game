@@ -1,8 +1,14 @@
-body {
+html,body {
+  background-color: black;
+  height: 100%;
+  overflow: hidden;  
+}
+
+#start-screen {
   background-color: black;
 }
 
-canvas {
+#heart {
   position: static;
   left:0;
   top: 0;

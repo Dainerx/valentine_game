@@ -5,24 +5,44 @@
   <meta charset="UTF-8">
   <title>Valentine Game</title>
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js">
+  <link rel="stylesheet" href="./game-style.css">
 </head>
 
 <body>
   <!-- partial:index.partial.html -->
-  <div id="top">
-    <div class="typewriter" id="spin">
-      <h5 class="text-primary">← Press any key to play →</h5>
-      <h4>
-        ←By Oussama Ben Ghorbel→
-      </h4>
+  <div id="start-screen">
+    <div id="top">
+      <div class="typewriter" id="spin">
+        <h5 class="text-primary">← Press any key to play →</h5>
+        <h4>
+          ←By Oussama Ben Ghorbel→
+        </h4>
+      </div>
+    </div>
+    <canvas id="heart">
+    </canvas>
+  </div>
+
+  <div id="game-screen" hidden>
+    <div>
+      <label style="color: white;margin-left: 19%;"><i id="timer"></i></label>
+    </div>
+    <canvas width="500" height="500" id="game"></canvas>
+    <div>
+      <label style="color: white;">Score: <i id="score">0</i></label>
+      <label style="color: white;margin-left: 17%;">Last Collected: <i id="last-collected">None</i></label>
     </div>
   </div>
-  <canvas id="heart">
-  </canvas>
-  <!-- partial -->
-  <script src="./script.js"></script>
 
+  <!-- partial -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src="./script.js"></script>
+  <script>
+  </script>
 </body>
+
+<script src="keyboard.js"></script>
+<script src="animations.js"></script>
+<script src="game-engine.js"></script>
 
 </html>

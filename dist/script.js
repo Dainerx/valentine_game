@@ -1,7 +1,3 @@
-const cycleStep = 2000;
-var cycle = 0;
-var fadeOutCycle = 2000;
-var displayCycle = 0;
 
 window.requestAnimationFrame =
     window.__requestAnimationFrame ||
