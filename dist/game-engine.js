@@ -1,3 +1,7 @@
+// player undefine
+// solve for gift 
+// map score and colors.
+
 const gameLength = 10;
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
@@ -14,11 +18,11 @@ var player = {
     lastCollected: "None"
 };
 
-var snake = {
+var player = {
     x: 160,
     y: 160,
 
-    // snake velocity. moves one grid length every frame in either the x or y direction
+    // player velocity. moves one grid length every frame in either the x or y direction
     dx: grid,
     dy: 0,
 
@@ -28,6 +32,10 @@ var snake = {
     // length of the snake. grows when eating an apple
     maxCells: 1
 };
+
+const redColor = "red";
+const whiteColor = "white";
+const camieColor = "#ffd59a";
 
 function startGame() {
     player.score = 0;
@@ -45,22 +53,6 @@ function stopGame() {
         game.status = "stopped";
     } else
         console.log("this should not happen");
-}
-function getRandomGift() {
-    let gifts = ["red", "white", "red",
-        "white", "white", "white", "white", "white", "#ffd59a"];
-    let randomIndex = getRandomInt(0, gifts.length);
-    return gifts[randomIndex];
-}
-function getGiftScore(gift) {
-    console.log(gift);
-    if (gift == "white")
-        return 1;
-    else if (gift == "red")
-        return 5;
-    else {
-        return 20 //max;
-    }
 }
 
 function triggerDisplay(player) {
@@ -93,13 +85,35 @@ var apple = {
     score: scoreRandomGift
 };
 
-// get random whole numbers in a specific range
-// @see https://stackoverflow.com/a/1527820/2124254
-function getRandomSong() {
-    const songs = [""]
-}
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getRandomGift() {
+    let gifts = ["rose", "white rose", "rose",
+        "white rose", "white rose", "white rose", "white rose", "white rose", "camie"];
+    let randomIndex = getRandomInt(0, gifts.length);
+    return gifts[randomIndex];
+}
+
+function getRandomGiftColor() {
+    if (gift == "white rose")
+        return whiteColor;
+    else if (gift == "rose")
+        return redColor;
+    else {
+        return camieColor //max;
+    }
+}
+
+function getGiftScore(gift) {
+    if (gift == "white")
+        return 1;
+    else if (gift == "red")
+        return 5;
+    else {
+        return 20 //max;
+    }
 }
 
 function isGiftCollected(playerX, playerY, giftX, giftY, toleranceInterval) {
