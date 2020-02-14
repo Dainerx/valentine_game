@@ -1,5 +1,4 @@
 // map score and colors.
-
 const gameStarting = "starting"
 const gameStarted = "started";
 const gameStopped = "stopped";
@@ -46,24 +45,28 @@ var gift = {
 // Gift colors
 const redColor = "red";
 const whiteColor = "white";
-const camieColor = "#ffd59a";
+const caramelColor = "#ffd59a";
 
 function startGame() {
     player.score = 0;
     player.timeLeft = 2000;
     player.lastCollected = "None";
     triggerDisplay(player);
-    if (game.status == gameStarting || game.status == gameStopped)
+    if (game.status == gameStarting || game.status == gameStopped) {
         game.status = gameStarted;
-    else
+    }
+    else {
         console.log("this should not happen");
+    }
     gameLoop();
 }
+
 function stopGame() {
-    if (game.status = gameStarted) {
-        game.status = gameStopped;
-    } else
-        console.log("this should not happen");
+    game.status = gameStopped;
+}
+
+function goFaster() {
+    player.dx = player.dx * 2;
 }
 
 function triggerDisplay(player) {
@@ -93,7 +96,7 @@ function getRandomInt(min, max) {
 
 function getRandomGift() {
     let gifts = ["rose", "white rose", "rose",
-        "white rose", "white rose", "white rose", "white rose", "white rose", "camie"];
+        "white rose", "white rose", "white rose", "white rose", "white rose", "caramel"];
     let randomIndex = getRandomInt(0, gifts.length);
     return gifts[randomIndex];
 }
@@ -104,7 +107,7 @@ function getRandomGiftColor(giftType) {
     else if (giftType == "rose")
         return redColor;
     else {
-        return camieColor //max;
+        return caramelColor //max;
     }
 }
 
@@ -227,31 +230,19 @@ function gameLoop() {
         // player ate gift;
         if (isGiftCollected(cell.x, cell.y, gift.x, gift.y, grid)) {
             if (player.lastCollected == "None") // First eat.
-            //Launch timer.
             {
+                //Game has started
                 game.state = gameStarted;
-                var date = new Date();
-                date.setSeconds(date.getSeconds() + 32);
-                var countDownDate = date.getTime();
-                // Update the count down every 1 second
+                //Launch timer.
                 var timer = setInterval(function () {
 
-                    // Get today's date and time
-                    var now = new Date().getTime();
-
-                    // Find the distance between now and the count down date
-                    var distance = countDownDate - now;
-
-                    // Time calculations for days, hours, minutes and seconds
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                    // Output the result in an element with id="demo"
+                    // Output the result in an element with id="timer"
                     document.getElementById("timer").innerHTML = "Time remaining:" +
-                        seconds + "s ";
+                        player.timeLeft;
 
                     // If the count down is over, write some text 
 
-                    if (distance < 0) {
+                    if (player.timeLeft < 0) {
                         clearInterval(timer);
                         document.getElementById("timer").innerHTML = "GAME OVER!";
                         setTimeout(() => {
@@ -261,15 +252,15 @@ function gameLoop() {
                     }
                 }, 1000);
 
+                // play hans' music
+                var audio = new Audio('hans.mp3');
+                audio.play();
             }
             gift.score = getGiftScore(gift.type);
             player.score = player.score + gift.score;
             player.lastCollected = gift.type;
             // trigger display
             triggerDisplay(player);
-            // play sound
-            var audio = new Audio('hans.mp3');
-            audio.play();
 
             gift.x = getRandomInt(0, 25) * grid;
             gift.y = getRandomInt(0, 25) * grid;

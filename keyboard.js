@@ -11,7 +11,7 @@ document.addEventListener('keyup', function (event) {
         startGame();
     }
     if (key === "f") {
-        player.dx *= 2;
+        goFaster();
     }
 });
 
