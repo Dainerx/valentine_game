@@ -91,6 +91,9 @@ var init = function () {
 
     var time = 0;
     var loop = function () {
+        console.log(game.status);
+        if (game.status == gameStarted)
+            return;
         var n = -Math.cos(time);
         pulse((1 + n) * .5, (1 + n) * .5);
         time += ((Math.sin(time)) < 0 ? 9 : (n > 0.8) ? .2 : 1) * config.timeDelta;

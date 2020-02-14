@@ -11,7 +11,7 @@ document.addEventListener('keyup', function (event) {
         startGame();
     }
     if (key === "f") {
-        loop();
+        player.dx *= 2;
     }
 });
 
@@ -21,7 +21,6 @@ document.addEventListener('keyup', function (event) {
     }
     var key = event.key || event.keyCode;
     if (key === "p") {
-        console.log("starting game");
         startScreen = document.getElementById("start-screen");
         startScreen.style.display = 'none';
         startScreen.parentNode.removeChild(startScreen);
