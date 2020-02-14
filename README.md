@@ -2,6 +2,11 @@
 
 A simple valentine game: collect the roses. 
 
+
+## Play
+
+It is very simple, download the project and open the index.html file with a browser of your choice. 
+
 The browser's JavaScript engine needs to be on.
 
 ## Screen shots
