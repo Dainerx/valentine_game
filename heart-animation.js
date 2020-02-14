@@ -1,22 +1,23 @@
+
 window.requestAnimationFrame =
     window.__requestAnimationFrame ||
-        window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        (function () {
-            return function (callback, element) {
-                var lastTime = element.__lastTime;
-                if (lastTime === undefined) {
-                    lastTime = 0;
-                }
-                var currTime = Date.now();
-                var timeToCall = Math.max(1, 33 - (currTime - lastTime));
-                window.setTimeout(callback, timeToCall);
-                element.__lastTime = currTime + timeToCall;
-            };
-        })();
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    (function () {
+        return function (callback, element) {
+            var lastTime = element.__lastTime;
+            if (lastTime === undefined) {
+                lastTime = 0;
+            }
+            var currTime = Date.now();
+            var timeToCall = Math.max(1, 33 - (currTime - lastTime));
+            window.setTimeout(callback, timeToCall);
+            element.__lastTime = currTime + timeToCall;
+        };
+    })();
 window.isDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(((navigator.userAgent || navigator.vendor || window.opera)).toLowerCase()));
 var loaded = false;
 var init = function () {
@@ -80,7 +81,7 @@ var init = function () {
             f: "hsla(0," + ~~(40 * rand() + 60) + "%," + ~~(60 * rand() + 20) + "%,.3)",
             trace: []
         };
-        for (var k = 0; k < traceCount; k++) e[i].trace[k] = {x: x, y: y};
+        for (var k = 0; k < traceCount; k++) e[i].trace[k] = { x: x, y: y };
     }
 
     var config = {
@@ -90,6 +91,9 @@ var init = function () {
 
     var time = 0;
     var loop = function () {
+        console.log(game.status);
+        if (game.status == gameStarted)
+            return;
         var n = -Math.cos(time);
         pulse((1 + n) * .5, (1 + n) * .5);
         time += ((Math.sin(time)) < 0 ? 9 : (n > 0.8) ? .2 : 1) * config.timeDelta;
@@ -138,6 +142,7 @@ var init = function () {
 
         window.requestAnimationFrame(loop, canvas);
     };
+
     loop();
 };
 
