@@ -18,6 +18,7 @@ The browser's JavaScript engine needs to be on.
 
 ## Credits 
 Animations: DarkdeafCypher (CodePen)
+
 Music: Hans Zimmer - Time
 
 ## Contributing 
